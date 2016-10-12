@@ -1,0 +1,168 @@
+<div ng-if="session.isLogin=='1'"> 
+<!-- Main Header -->
+      <header class="main-header" page="settings">
+
+        <!-- Logo -->
+         
+
+        <!-- Header Navbar -->
+        <nav  class="col-xs-12 navbar navbar-static-top nopadding" role="navigation">
+					<span class="col-xs-3 col-md-2 nav-menu-box-left ">
+         <!-- Sidebar toggle button-->
+          <a id="side-nav-menu-selecter" class="sidebar-toggle " data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+					</span>
+					<div class="col-xs-6 col-md-8 nopadding parent">
+						<img src="logo.png" class="child door-bell-menu-logo">
+					</div>
+          <!-- Navbar Right Menu -->
+          <div class="col-xs-3 col-md-2  navbar-custom-menu nav-menu-box-right">
+            <ul class="nav navbar-nav">
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                  
+                </a>
+                
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+
+	<aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <!-- Optionally, you can add icons to the links -->
+            <li class="parent-menu "><a class="toggle"  href="#/"><i class="text-aqua fa fa-home"></i> <span>Home</span></a></li>
+            <li class="parent-menu"><a class="toggle"  href="#/account"><i class="text-aqua fa fa-user"></i> <span>Account</span></a></li>
+						<li class="parent-menu active"><a class="toggle"  href="#/settings"><i class="text-aqua fa fa-wrench"></i> <span>Settings</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/timer"><i class="text-aqua fa fa-clock-o"></i> <span>Timer</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/deviceinfo"><i class="text-aqua fa fa-bluetooth"></i> <span>Device Info</span></a></li>
+						 <li class="parent-menu "><a class="toggle"  href="#/devicelogs"><i class="text-aqua fa fa-file-text"></i> <span>Logs</span></a></li>
+            <li ><a ng-click="logout()"  ><i class="text-red fa fa-power-off"></i> <span>Logout</span></a></li>
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+
+<div id="deviceready"  class="content-wrapper col-xs-12">
+   <section class="content">
+      
+		<div class="col-xs-12 nopadding">
+			<div class="col-xs-12 nopadding">
+				<div class="col-xs-12  loading-container to-center">
+					<div class="col-xs-3 nopadding">&nbsp;
+					</div>
+				 	<div class="col-xs-6 nopadding align-child-to-center margin-left-less-25px">
+						<div class="loading-text align-center"></div>
+						<img class="loading-img" src="img/loading.gif">
+					</div>
+					<div class="col-xs-3 nopadding">&nbsp;
+					</div>
+				</div>
+				<div class="col-xs-12  nopadding  donot-display-any-content-if-ble-is-not-connected">
+							<fieldset class="scheduler-border">
+    						<legend class="scheduler-border"><h3>DST Settings</h3></legend><br>
+								<div class="col-xs-12  nopadding dstsettings-container" ISDSTTIMESREAD="false">
+									<div data-role="fieldcontain"  class="form-group demo-cont" id="dstDateTimepicker_container">
+                    <label>DST Time</label><br>
+                  		<input type="text" id="dstDateTimepicker" class="col-xs-12" />
+											<p class="text-red"></p> 
+									 </div>
+									<div  class="form-group">
+										<label>DST Shift</label><br>
+										 <select id="dstShift" class="col-xs-12" >
+											<option value="">Select shift</option>
+											<option value="0">Standard</option>
+											<option value="1">+ 0.5h shift</option>
+											<option value="2">+ 1h shift</option>
+											<option value="3">+ 2h shift</option>
+											<option value="4">- 0.5h shift</option>		
+											<option value="5">- 1h shift</option>
+											<option value="6">- 2h shift</option>
+										</select>  
+										<p class="text-red"></p>
+                  </div>
+									
+								</div>
+								<div class="col-xs-12  nopadding"><br>
+									<button class="col-xs-5 dst-settings-save btn btn-success">Save</button>
+									<div class="col-xs-2"></div>
+									<button class="col-xs-5 dst-settings-reset btn btn-danger">Clear</button>
+								</div>
+							</fieldset>
+						
+							<fieldset class="scheduler-border">
+    						<legend class="scheduler-border"><h3>Change Passkey</h3></legend><br>
+								<form name="changePasskeyForm" novalidate>
+					
+					<div class="form-group has-feedback">
+            <input type="password" only-number class="form-control passkey required-text-box" ng-minlength="6" ng-maxlength="6"  name="passkey" placeholder="New Passkey" ng-model="passkey"  required/>
+            <span class="form-control-feedback"><i class="fa fa-lock "></i></span>
+						<div ng-messages="changePasskeyForm.passkey.$error">
+								<p class="hide-me text-red req" ng-message="required">Passkey is required.</p>
+								<p  class="text-red" ng-message="minlength">Min Length of Passkey is 6.</p>
+								<p class="text-red"  ng-message="maxlength">Max Length of Passkey is 6.</p>
+   					</div>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" only-number class="form-control required-text-box" name="cpasskey" ng-minlength="6" ng-maxlength="6"  compare-to="passkey" placeholder="Retype passkey" ng-model="cpasskey" required/>
+            <span class="form-control-feedback"><i class="fa fa-lock "></i></span>
+						<div ng-messages="changePasskeyForm.cpasskey.$error">
+								<p class="hide-me text-red req" ng-message="required">Passkey is required.</p>
+								<p  class="text-red" ng-message="minlength">Min Length of Passkey is 6.</p>
+								<p class="text-red"  ng-message="maxlength">Max Length of Passkey is 6.</p>
+								<p  class="text-red " ng-message="compareTo">Passkeys do not match.</p>
+   					</div>
+						
+          </div>
+					<div class="row">
+					<div class="col-xs-12 ">
+							
+              <button type="button" ng-disabled="changePasskeyForm.$invalid" class="changePasskey btn btn-primary btn-block btn-flat" name="changePasskey">Change Passkey</button>
+            </div>
+					</div>
+					 </form>
+							</fieldset>
+	
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 vacant-space">
+		</div>
+    </section><!-- /.content -->
+				
+				 <div ng-switch on="data.platform">
+					<div  ng-switch-when='android'>
+						<script type="text/javascript"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript"  src="js/app.js"></script>
+						<script type="text/javascript"  src="js/app.min.js" ></script>	
+						<script type="text/javascript"  src="js/main.js"></script>	
+						<script type="text/javascript" src="js/BLE.js"></script>
+						<script type="text/javascript" src="js/timerinit.js"></script>	
+					</div>
+					<div  ng-switch-when='ios'>
+						<script type="text/javascript-lazy"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.min.js" ></script>	
+						<script type="text/javascript-lazy"  src="js/main.js"></script>	
+						<script type="text/javascript-lazy" src="js/timepicker.js"></script>	
+						<script type="text/javascript-lazy" src="js/BLE.js"></script>
+						<script type="text/javascript-lazy" src="js/timerinit.js"></script>	
+					</div>
+				</div>
+  </div><!-- /.content-wrapper -->
+	
+	
+ </div>
+

@@ -1,0 +1,180 @@
+<div ng-if="session.isLogin=='1'" > 
+<!-- Main Header -->
+      <header class="main-header" page="timer">
+
+        <!-- Logo -->
+         
+
+        <!-- Header Navbar -->
+        <nav  class="col-xs-12 navbar navbar-static-top nopadding" role="navigation">
+					<span class="col-xs-3 col-md-2 nav-menu-box-left ">
+         <!-- Sidebar toggle button-->
+          <a id="side-nav-menu-selecter" class="sidebar-toggle " data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+					</span>
+					<div class="col-xs-6 col-md-8 nopadding parent">
+						<img src="logo.png" class="child door-bell-menu-logo">
+					</div>
+          <!-- Navbar Right Menu -->
+          <div class="col-xs-3 col-md-2  navbar-custom-menu nav-menu-box-right">
+            <ul class="nav navbar-nav">
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                  
+                </a>
+                
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+
+	<aside class="main-sidebar" >
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <!-- Optionally, you can add icons to the links -->
+            <li class="parent-menu "><a class="toggle"  href="#/"><i class="text-aqua fa fa-home"></i> <span>Home</span></a></li>
+            <li class="parent-menu active"><a class="toggle"  href="#/"><i class="text-aqua fa fa-user"></i> <span>Account</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/settings"><i class="text-aqua fa fa-wrench"></i> <span>Settings</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/timer"><i class="text-aqua fa fa-clock-o"></i> <span>Timer</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/deviceinfo"><i class="text-aqua fa fa-bluetooth"></i> <span>Device Info</span></a></li>
+						 <li class="parent-menu "><a class="toggle"  href="#/devicelogs"><i class="text-aqua fa fa-file-text"></i> <span>Logs</span></a></li>
+            <li ><a ng-click="logout()"  ><i class="text-red fa fa-power-off"></i> <span>Logout</span></a></li>
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+
+<div id="deviceready"  class="content-wrapper col-xs-12" ng-controller="profileController">
+   <section class="content">
+      
+		<div class="col-xs-12 nopadding">
+			<fieldset class="scheduler-border">
+    		<legend class="scheduler-border"><h3>Profile Info</h3></legend><br>
+						<form name="userForm" ng-submit="profile()" novalidate>
+          <div class="form-group has-feedback">
+							<label>Name</label>           
+						 <input id="profileName" type="text" class="form-control required-text-box" name="name" placeholder="Full name" ng-model="user.name" required>
+            <span class="form-control-feedback"><i class="fa fa-user "></i></span>
+						<div ng-messages="userForm.name.$error">
+								<p class="hide-me text-red req" ng-message="required">Your name is required.</p>
+   					</div>	
+          </div>
+          <div class="form-group has-feedback">
+						<label>Username</label>  
+            <input id="profileUserName" type="text" class="form-control required-text-box" name="userName"  placeholder="User Name" ng-model="user.userName" ng-minlength="3" ng-maxlength="8" required>
+            <span class="form-control-feedback"><i class="fa fa-user "></i></span>
+						<div ng-messages="userForm.userName.$error">
+								<p  class="text-red" ng-message="minlength">Username is too short.</p>
+								<p class="text-red"  ng-message="maxlength">Username is too long.</p>
+								<p class="hide-me text-red req" ng-message="required">Username is required.</p>
+   					</div>
+						
+          </div>
+					 <div class="hide-me">
+          	 <input type="text" class="form-control " name="userId"  ng-model="user.userId">
+					</div>
+					<div class="form-group has-feedback">
+						<label>Email</label> 
+            <input id="profileEmail"type="email" class="form-control required-text-box"  name="email" placeholder="Email" ng-model="user.email" required/>
+            <span class="form-control-feedback"><i class="fa fa-envelope-o "></i></span>
+						<div ng-messages="userForm.email.$error">
+								<p class="text-red" ng-message="email">This needs to be a valid email</p>
+								<p class="hide-me text-red req"  ng-message="required">Email is required.</p>
+						</div>
+						
+          </div>
+          <div class="row">
+            
+            <div class="col-xs-12 ">
+							<div class="col-xs-5 nopadding">
+             	 <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-block  btn-primary btn-flat" name="signUp">Update</button>
+							</div>
+							<div class="col-xs-2">
+							</div>
+							<div class="col-xs-5 nopadding">
+								<button type="button" ng-click="resetProfile()" class="btn  btn-danger btn-block btn-flat profile-clear" name="clear">Clear</button>
+							</div>
+            </div><!-- /.col -->
+          </div>
+        </form>
+				</fieldset>
+				<fieldset class="scheduler-border">
+    		<legend class="scheduler-border"><h3>Change Password</h3></legend><br>
+					<form name="changePasswordForm" ng-submit="changepassword()" novalidate>
+					 <input type="password" class="form-control hide-me"  name="originalPassword" originalPassword="{{ user.originalPassword  }}"  ng-model="user.originalPassword" />
+					<div class="form-group has-feedback">
+            <input type="password" compare-to="user.originalPassword" class="form-control required-text-box"  name="currentpassword" placeholder="Current Password" ng-model="user.currentpassword"  required/>
+            <span class="form-control-feedback"><i class="fa fa-lock "></i></span>
+						<div ng-messages="changePasswordForm.currentpassword.$error">
+								<p class="hide-me text-red req" ng-message="required">Password is required.</p>
+								<p  class="text-red " ng-message="compareTo">Please enter Your Current Password Correctly.</p>
+   					</div>
+          </div>
+					<div class="form-group has-feedback">
+            <input type="password" class="form-control required-text-box" ng-minlength="3" ng-maxlength="8"  name="password" placeholder="New Password" ng-model="user.password"  required/>
+            <span class="form-control-feedback"><i class="fa fa-lock "></i></span>
+						<div ng-messages="changePasswordForm.password.$error">
+								<p class="hide-me text-red req" ng-message="required">Password is required.</p>
+								<p  class="text-red" ng-message="minlength">Password is too short.</p>
+								<p class="text-red"  ng-message="maxlength">Password is too long.</p>
+   					</div>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control required-text-box" name="cpassword" ng-minlength="3" ng-maxlength="8"  compare-to="user.password" placeholder="Retype password" ng-model="user.cpassword" required/>
+            <span class="form-control-feedback"><i class="fa fa-lock "></i></span>
+						<div ng-messages="changePasswordForm.cpassword.$error">
+								<p class="hide-me text-red req" ng-message="required">Password is required.</p>
+								<p  class="text-red" ng-message="minlength">Password is too short.</p>
+								<p class="text-red"  ng-message="maxlength">Password is too long.</p>
+								<p  class="text-red " ng-message="compareTo">Passwords do not match.</p>
+   					</div>
+						
+          </div>
+					<div class="row">
+					<div class="col-xs-12 ">
+							
+              <button type="submit" ng-disabled="changePasswordForm.$invalid" class="btn btn-primary btn-block btn-flat" name="chnagePassword">Change Password</button>
+            </div>
+					</div>
+					 </form>
+				</fieldset>
+		</div>
+		<div class="col-xs-12 vacant-space">
+		</div>
+    </section><!-- /.content -->
+				
+				 <div ng-switch on="data.platform">
+					<div  ng-switch-when='android'>
+						<script type="text/javascript"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript"  src="js/app.js"></script>
+						<script type="text/javascript"  src="js/app.min.js" ></script>	
+						<script type="text/javascript"  src="js/main.js"></script>	
+						<script type="text/javascript" src="js/BLE.js"></script>
+						<script type="text/javascript" src="js/timerinit.js"></script>	
+					</div>
+					<div  ng-switch-when='ios'>
+						<script type="text/javascript-lazy"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.min.js" ></script>	
+						<script type="text/javascript-lazy"  src="js/main.js"></script>	
+						<script type="text/javascript-lazy" src="js/timepicker.js"></script>	
+						<script type="text/javascript-lazy" src="js/BLE.js"></script>
+						<script type="text/javascript-lazy" src="js/timerinit.js"></script>	
+					</div>
+				</div>
+  </div><!-- /.content-wrapper -->
+	
+	
+ </div>
+

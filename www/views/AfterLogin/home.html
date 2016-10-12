@@ -1,0 +1,112 @@
+<div ng-if="session.isLogin=='1'"> 
+<!-- Main Header -->
+      <header class="main-header" page="home">
+
+        <!-- Logo -->
+         
+
+        <!-- Header Navbar -->
+        <nav  class="col-xs-12 navbar navbar-static-top nopadding" role="navigation">
+					<span class="col-xs-3 col-md-2 nav-menu-box-left ">
+         <!-- Sidebar toggle button-->
+          <a id="side-nav-menu-selecter" class="sidebar-toggle " data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+					</span>
+					<div class="col-xs-6 col-md-8 nopadding parent">
+						<img src="logo.png" class="child door-bell-menu-logo">
+					</div>
+          <!-- Navbar Right Menu -->
+          <div class="col-xs-3 col-md-2  navbar-custom-menu nav-menu-box-right">
+            <ul class="nav navbar-nav">
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                  
+                </a>
+                
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+
+	<aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- Sidebar Menu -->
+         <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <!-- Optionally, you can add icons to the links -->
+            <li class="parent-menu active"><a class="toggle"  href="#/"><i class="text-aqua fa fa-home"></i> <span>Home</span></a></li>
+            <li class="parent-menu"><a class="toggle"  href="#/account"><i class="text-aqua fa fa-user"></i> <span>Account</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/settings"><i class="text-aqua fa fa-wrench"></i> <span>Settings</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/timer"><i class="text-aqua fa fa-clock-o"></i> <span>Timer</span></a></li>
+						<li class="parent-menu "><a class="toggle"  href="#/deviceinfo"><i class="text-aqua fa fa-bluetooth"></i> <span>Device Info</span></a></li>
+						 <li class="parent-menu "><a class="toggle"  href="#/devicelogs"><i class="text-aqua fa fa-file-text"></i> <span>Logs</span></a></li>
+            <li ><a ng-click="logout()"  ><i class="text-red fa fa-power-off"></i> <span>Logout</span></a></li>
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+
+<div id="home-page-content-container" init-loaded="false" class="content-wrapper col-xs-12 pageslimscroll" style="overflow:auto;">
+   <section class="content">
+   	
+		<div class="col-xs-12 show-after-loading hide-me  donot-display-any-content-if-ble-is-not-connected">
+			<div class="col-xs-12 door-bell-container">
+				<div class="col-xs-12 align-child-to-center">
+					<img class="responsive align-center" id="door-bell" src="" style="max-width:260px;width:100%;margin-top:30px;">
+				</div>
+				<div class="col-xs-6 align-child-to-center">
+					<img  class="responsive align-center" id="door-bell-on" src="" style="max-width:100px;width:100%;margin-top:30px;">
+				</div>
+				<div class="col-xs-6 align-child-to-center">
+					<img  class="responsive align-center" id="door-bell-off" src="" style="max-width:100px;width:100%;margin-top:30px;">
+				</div>
+			</div>
+			
+		</div>
+
+
+		<div class="col-xs-12  loading-container to-center">
+			<div class="col-xs-3 nopadding">&nbsp;
+			</div>
+		 	<div class="col-xs-6 nopadding align-child-to-center margin-left-less-25px">
+				<div class="loading-text align-center"></div>
+				<img class="loading-img" src="img/loading.gif">
+			</div>
+			<div class="col-xs-3 nopadding">&nbsp;
+			</div>
+		</div>
+			
+    </section><!-- /.content -->
+					
+				  <div ng-switch on="data.platform">
+					<div  ng-switch-when='android'>
+						<script type="text/javascript"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript"  src="js/app.js"></script>
+						<script type="text/javascript"  src="js/app.min.js" ></script>	
+						<script type="text/javascript"  src="js/main.js"></script>	
+						<script type="text/javascript" src="js/BLE.js"></script>
+						<script type="text/javascript" src="js/timerinit.js"></script>	
+					</div>
+					<div  ng-switch-when='ios'>
+						<script type="text/javascript-lazy"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.min.js" ></script>	
+						<script type="text/javascript-lazy"  src="js/main.js"></script>	
+						<script type="text/javascript-lazy" src="js/timepicker.js"></script>	
+						<script type="text/javascript-lazy" src="js/BLE.js"></script>
+						<script type="text/javascript-lazy" src="js/timerinit.js"></script>	
+					</div>
+				</div>
+  </div><!-- /.content-wrapper -->
+ </div>
+

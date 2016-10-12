@@ -1,0 +1,79 @@
+ <div ng-app="gadgeonApp" class="register-box" style="background: #fff;" ng-controller="signUpController">
+      <div class="register-logo">
+       <img src="logo.png" class="responsive" style="max-width:150px;">
+      </div>
+
+      <div class="register-box-body" >
+        <p class="login-box-msg"><b>Register a new membership</b></p>
+        <form name="userForm" ng-submit="signUp()" novalidate>
+          <div class="form-group has-feedback" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+            <input type="text" class="form-control required-text-box" name="name" placeholder="Full name" ng-model="user.name" required>
+            <span class="form-control-feedback"><i class="fa fa-user "></i></span>
+						<div ng-messages="userForm.name.$error">
+								<p class="hide-me text-red req" ng-message="required">Your name is required.</p>
+   					</div>	
+          </div>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control required-text-box" name="userName"  placeholder="User Name" ng-model="user.userName" ng-minlength="3" ng-maxlength="8" required>
+            <span class="form-control-feedback"><i class="fa fa-user "></i></span>
+						<div ng-messages="userForm.userName.$error">
+								<p  class="text-red" ng-message="minlength">Username is too short.</p>
+								<p class="text-red"  ng-message="maxlength">Username is too long.</p>
+								<p class="hide-me text-red req" ng-message="required">Username is required.</p>
+   					</div>
+						
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control required-text-box"  name="password" placeholder="Password" ng-model="user.password"  required/>
+            <span class="form-control-feedback"><i class="fa fa-lock "></i></span>
+						<div ng-messages="userForm.password.$error">
+								<p class="hide-me text-red req" ng-message="required">Password is required.</p>
+   					</div>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control required-text-box" name="cpassword"  compare-to="user.password" placeholder="Retype password" ng-model="user.cpassword" required/>
+            <span class="form-control-feedback"><i class="fa fa-lock "></i></span>
+						<div ng-messages="userForm.cpassword.$error">
+								<p class="hide-me text-red req" ng-message="required">Password is required.</p>
+								<p  class="text-red " ng-message="compareTo">Passwords do not match.</p>
+   					</div>
+						
+          </div>
+					<div class="form-group has-feedback">
+            <input type="email" class="form-control required-text-box"  name="email" placeholder="Email" ng-model="user.email" required/>
+            <span class="form-control-feedback"><i class="fa fa-envelope-o "></i></span>
+						<div ng-messages="userForm.email.$error">
+								<p class="text-red" ng-message="email">This needs to be a valid email</p>
+								<p class="hide-me text-red req"  ng-message="required">Email is required.</p>
+						</div>
+						
+          </div>
+          <div class="row">
+            
+            <div class="col-xs-12 ">
+              <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-primary btn-block btn-flat" name="signUp">Sign Up</button>
+            </div><!-- /.col -->
+          </div>
+        </form>        
+
+      </div><!-- /.form-box -->
+			<div ng-switch on="data.platform">
+					<div  ng-switch-when='android'>
+						<script type="text/javascript"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript" src="js/DB.js"></script>
+						<script type="text/javascript"  src="js/app.js"></script>
+						<script type="text/javascript"  src="js/app.min.js" ></script>	
+						<script type="text/javascript"  src="js/main.js"></script>
+						
+					</div>
+					<div  ng-switch-when='ios'>
+						<script type="text/javascript-lazy"  src="js/bootstrap.min.js"></script>
+						<script type="text/javascript-lazy" src="js/DB.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.js"></script>
+						<script type="text/javascript-lazy"  src="js/app.min.js" ></script>	
+						<script type="text/javascript-lazy"  src="js/main.js"></script>	
+						
+					</div>
+				</div>
+		
+    </div><!-- /.register-box -->

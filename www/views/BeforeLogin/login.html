@@ -1,0 +1,50 @@
+<div ng-app="gadgeonApp" class="login-box" style="background: #fff;" ng-controller="loginController"><br>
+  <div class="login-logo">
+   <img src="logo.png" class="responsive" style="max-width:150px;">
+  </div><!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg"><b>Please Sign in</b></p>
+    <form name="loginForm" ng-submit="login()"  novalidate>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control required-text-box" name="userName"  placeholder="User Name" ng-model="loginCredentials.userName" required>
+        <span class="form-control-feedback"><i class="fa fa-user"></i></span>
+				<div ng-messages="loginForm.userName.$error">
+						<p class="hide-me text-red req" ng-message="required">Username is required.</p>
+   			</div>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control required-text-box"  name="password" placeholder="Password" ng-model="loginCredentials.password"  required/>
+        <span class="form-control-feedback"><i class="fa fa-lock"></i></span>
+				<div ng-messages="loginForm.password.$error">
+						<p class="hide-me text-red req" ng-message="required">Password is required.</p>
+				</div>
+      </div>
+      <div class="row">
+       
+        <div class="col-xs-12">
+          <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        </div><!-- /.col -->
+      </div>
+    </form>
+
+		<div ng-switch on="data.platform">
+			<div  ng-switch-when='android'>
+				<script type="text/javascript"  src="js/bootstrap.min.js"></script>
+				<script type="text/javascript" src="js/DB.js"></script>
+				<script type="text/javascript"  src="js/app.js"></script>
+				<script type="text/javascript"  src="js/app.min.js" ></script>	
+				<script type="text/javascript"  src="js/main.js"></script>
+				
+			</div>
+			<div  ng-switch-when='ios'>
+				<script type="text/javascript-lazy"  src="js/bootstrap.min.js"></script>
+				<script type="text/javascript-lazy" src="js/DB.js"></script>
+				<script type="text/javascript-lazy"  src="js/app.js"></script>
+				<script type="text/javascript-lazy"  src="js/app.min.js" ></script>	
+				<script type="text/javascript-lazy"  src="js/main.js"></script>	
+				
+			</div>
+		</div>
+  </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->
+
